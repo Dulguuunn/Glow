@@ -1,26 +1,26 @@
-/**
- * ProductCard Component
- * Accepts: product data object { id, name, category, price, originalPrice,
- *           rating, reviewCount, image, imageAlt, badge, description }
- *          onAddToCart (function) — called with product data when button clicked
- * Returns: a DOM element (product card) with favorite/like toggle
- * Reusable — no global state, re-renders on data change via returned element
- */
+/*
+product cardiin component
+huleej avh:
+- object bolgoj huvirgasan datag huleej avna
+     { id, name, category, price, originalPrice,rating, reviewCount, image, imageAlt, badge, description }
+- onAddToCart - function - button clicked when called with product data
+returns: a DOM element (product card) with favorite/like toggle
+*/
 
 import StarRating from './StarRating.js';
 
 function ProductCard(product, onAddToCart) {
   // --- local like state ---
-  var liked = false;
-  var likeCount = product.likeCount || 0;
+  let liked = false;
+  let likeCount = product.likeCount || 0;
 
   // --- build card ---
-  var card = document.createElement('div');
+  const card = document.createElement('div');
   card.className = 'product-card';
   card.setAttribute('data-id', product.id);
 
   // price HTML
-  var priceHTML;
+  let priceHTML;
   if (product.originalPrice) {
     priceHTML =
       '<span class="product-price">$' + product.price +
@@ -30,7 +30,7 @@ function ProductCard(product, onAddToCart) {
   }
 
   // badge HTML
-  var badgeHTML = product.badge
+  const badgeHTML = product.badge
     ? '<span class="product-badge badge-sale">' + product.badge + '</span>'
     : '';
 
@@ -54,13 +54,13 @@ function ProductCard(product, onAddToCart) {
     '</div>';
 
   // append star rating (component)
-  var starEl = StarRating(product.rating, product.reviewCount);
-  var body = card.querySelector('.product-card-body');
+  const starEl = StarRating(product.rating, product.reviewCount);
+  const body = card.querySelector('.product-card-body');
   body.insertBefore(starEl, card.querySelector('.product-card-actions'));
 
   // --- like toggle logic ---
-  var favBtn    = card.querySelector('.btn-favorite');
-  var countSpan = card.querySelector('.like-count');
+  const favBtn    = card.querySelector('.btn-favorite');
+  const countSpan = card.querySelector('.like-count');
 
   favBtn.addEventListener('click', function () {
     liked = !liked;
@@ -71,7 +71,7 @@ function ProductCard(product, onAddToCart) {
   });
 
   // --- add to cart ---
-  var cartBtn = card.querySelector('.btn-add-cart');
+  const cartBtn = card.querySelector('.btn-add-cart');
   cartBtn.addEventListener('click', function () {
     if (typeof onAddToCart === 'function') onAddToCart(product);
   });

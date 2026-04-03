@@ -1,15 +1,15 @@
-/**
- * StarRating Component
- * Accepts: rating (number), reviewCount (number)
- * Returns: a DOM element showing filled/empty stars + count
- * Reusable, no external dependencies
- */
+/*
+StarRating Component
+Accepts: rating (number), reviewCount (number)
+Returns: a DOM element showing filled/empty stars + count
+Reusable, no external dependencies
+*/
 function StarRating(rating, reviewCount) {
-  var full  = Math.round(rating);
-  var empty = 5 - full;
-  var stars = '&#9733;'.repeat(full) + '&#9734;'.repeat(empty);
+  const full  = Math.round(rating);
+  const empty = 5 - full;
+  const stars = '&#9733;'.repeat(full) + '&#9734;'.repeat(empty);
 
-  var el = document.createElement('div');
+  const el = document.createElement('div');
   el.className = 'star-rating';
   el.innerHTML =
     '<span class="stars">' + stars + '</span>' +

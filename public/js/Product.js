@@ -1,6 +1,6 @@
 import ProductCard from './components/ProductCard.js';
 
-// Product constructor — holds data only, delegates rendering to ProductCard component
+// Product constructor
 function Product(data) {
   this.id            = data.id;
   this.name          = data.name;
@@ -17,8 +17,8 @@ function Product(data) {
   this.likeCount     = data.likeCount || 0;
 }
 
-// Delegate rendering to the reusable ProductCard component
-// onAddToCart is optional callback
+// render ig ProductCard component ruu jiisn
+// onAddToCart duudaj bolno callback
 Product.prototype.render = function (onAddToCart) {
   return ProductCard(this, onAddToCart);
 };

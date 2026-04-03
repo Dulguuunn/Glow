@@ -18,7 +18,7 @@ function filterProducts(products, params) {
     if (params.get('minPrice') && p.price < Number(params.get('minPrice'))) return false;
     if (params.get('maxPrice') && p.price > Number(params.get('maxPrice'))) return false;
     if (params.get('q')) {
-      var q = params.get('q').toLowerCase();
+      const q = params.get('q').toLowerCase();
       if (p.name.toLowerCase().indexOf(q) === -1 && p.description.toLowerCase().indexOf(q) === -1) return false;
     }
     return true;
@@ -27,14 +27,14 @@ function filterProducts(products, params) {
 
 // Handle add-to-cart action (can be replaced with real cart logic)
 function handleAddToCart(product) {
-  var badge = document.querySelector('.cart-badge');
+  const badge = document.querySelector('.cart-badge');
   if (badge) badge.textContent = Number(badge.textContent || 0) + 1;
   alert(product.name + ' сагсанд нэмэгдлээ!');
 }
 
 // Render products into the #products-grid element using the ProductCard component
 function renderProducts(products) {
-  var grid = document.getElementById('products-grid');
+  const grid = document.getElementById('products-grid');
   grid.innerHTML = '';
   products.forEach(function (p) {
     grid.appendChild(p.render(handleAddToCart));
@@ -43,15 +43,15 @@ function renderProducts(products) {
 
 // Update the count label
 function updateCount(count) {
-  var el = document.querySelector('.products-count strong');
+  const el = document.querySelector('.products-count strong');
   if (el) el.textContent = count;
 }
 
 // Highlight the active filter link in the sidebar
 function highlightActiveLinks(params) {
-  var cat = params.get('category');
+  const cat = params.get('category');
   document.querySelectorAll('.filter-category-link').forEach(function (a) {
-    var linkCat = a.getAttribute('data-category');
+    const linkCat = a.getAttribute('data-category');
     if ((!cat && !linkCat) || cat === linkCat) {
       a.classList.add('active');
     } else {
@@ -62,7 +62,7 @@ function highlightActiveLinks(params) {
 
 // Entry point
 function init() {
-  var params = new URLSearchParams(window.location.search);
+  const params = new URLSearchParams(window.location.search);
 
   fetchProducts()
     .then(function (products) {
