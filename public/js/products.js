@@ -25,12 +25,19 @@ function filterProducts(products, params) {
   });
 }
 
-// Render products into the #products-grid element
+// Handle add-to-cart action (can be replaced with real cart logic)
+function handleAddToCart(product) {
+  var badge = document.querySelector('.cart-badge');
+  if (badge) badge.textContent = Number(badge.textContent || 0) + 1;
+  alert(product.name + ' сагсанд нэмэгдлээ!');
+}
+
+// Render products into the #products-grid element using the ProductCard component
 function renderProducts(products) {
   var grid = document.getElementById('products-grid');
   grid.innerHTML = '';
   products.forEach(function (p) {
-    grid.appendChild(p.render());
+    grid.appendChild(p.render(handleAddToCart));
   });
 }
 
